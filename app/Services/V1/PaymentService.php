@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
+use App\Services\V1\Payment\PaymentGatewayFactory;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PaymentService
@@ -32,7 +33,7 @@ class PaymentService
             throw new HttpException(422, 'Order already has a payment');
         }
 
-        $result = $method->gateway()->charge([
+        $result = PaymentGatewayFactory::make($method)->charge([
             'amount' => $order->total_amount
         ]);
 
