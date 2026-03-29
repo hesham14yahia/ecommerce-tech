@@ -8,6 +8,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+    @include('admin.partials.svg-sprite')
     <div class="min-h-screen bg-body flex">
         @include('admin.partials.sidebar')
         <div class="flex-1 flex flex-column">
